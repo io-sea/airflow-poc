@@ -1,0 +1,18 @@
+workflow:
+    name: Sample-Workflow-Faltynek
+
+services:
+    - name: nfs1
+      type: NFS
+      attributes:
+          namespace: HESTIA@/afsm/iosea/faltynek1/datasets/my-dataset-1GB
+          mountpoint: /afsm/iosea/faltynek1/mnt
+          storagesize: 1GiB
+          datanodes: 1
+          location: dp-cn
+
+steps:
+    - name: step1
+      command: "sbatch /p/home/jusers/faltynek1/deep/sbb/sbb_test_new.sh"
+      services:
+          - name: nfs1
